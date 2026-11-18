@@ -14,7 +14,7 @@ public class Cliente {
 
     @Column(unique = true)
     private String login;
-
+    @Column(unique = false)
     private String hash;
 
     @Column(nullable = false)
@@ -25,7 +25,7 @@ public class Cliente {
 
     @Column(unique = true)
     private String email;
-
+    @Column(unique = false)
     private String contato;
 
     @Column(unique = true)
