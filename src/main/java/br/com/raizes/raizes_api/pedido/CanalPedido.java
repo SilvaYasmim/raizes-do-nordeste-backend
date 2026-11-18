@@ -4,5 +4,4 @@ public enum CanalPedido {
     APP,
     TOTEM,
     BALCAO,
-    WEB
 }
