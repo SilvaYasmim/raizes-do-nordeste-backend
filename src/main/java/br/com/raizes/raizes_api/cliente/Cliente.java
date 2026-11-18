@@ -12,6 +12,7 @@ public class Cliente {
     @Column(name = "id_cliente")
     private Long idCliente;
 
+    @Column(unique = true)
     private String login;
 
     private String hash;
@@ -22,12 +23,15 @@ public class Cliente {
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
 
+    @Column(unique = true)
     private String email;
 
     private String contato;
 
+    @Column(unique = true)
     private String cpf;
 
+    @Column(nullable = false)
     private Boolean convidado;
 
     @Column(name = "pontos_do_cliente")
