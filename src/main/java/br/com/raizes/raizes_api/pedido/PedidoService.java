@@ -8,12 +8,14 @@ import br.com.raizes.raizes_api.cliente.Cliente;
 import br.com.raizes.raizes_api.cliente.ClienteRepository;
 import br.com.raizes.raizes_api.loja.Loja;
 import br.com.raizes.raizes_api.loja.LojaRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class PedidoService {
@@ -105,3 +107,36 @@ public class PedidoService {
                 estoque.setDisponivel(false);
             }
         }
+
+        // 4. Salvar pedido (itens via cascade; estoque via dirty checking do @Transactional)
+        Pedido pedidoSalvo = pedidoRepository.save(pedido);
+
+        // 5. Converter entidade salva para PedidoResponse
+        List<ItemPedidoResponse> itensResponse = pedidoSalvo.getItens().stream()
+                .map(item -> new ItemPedidoResponse(
+                        item.getIdItemPedido(),
+                        item.getProduto().getIdProduto(),
+                        item.getQuantidade(),
+                        item.getPrecoUnitario()
+                ))
+                .toList();
+
+        return new PedidoResponse(
+                pedidoSalvo.getIdPedido(),
+                pedidoSalvo.getCliente().getIdCliente(),
+                pedidoSalvo.getLoja().getIdLoja(),
+                pedidoSalvo.getCodigoRetirada(),
+                pedidoSalvo.getCanal(),
+                pedidoSalvo.getStatus(),
+                pedidoSalvo.getDataHora(),
+                pedidoSalvo.getDataHoraAgendamento(),
+                pedidoSalvo.getConsumirNoLocal(),
+                itensResponse
+        );
+    }
+
+    private String gerarCodigoRetirada() {
+        int numero = ThreadLocalRandom.current().nextInt(1000, 10000);
+        return "RN-" + numero;
+    }
+}
