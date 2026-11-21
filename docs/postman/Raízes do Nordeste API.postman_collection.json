@@ -1,0 +1,259 @@
+{
+  "info": {
+    "_postman_id": "d139f91d-0549-402d-958f-b92cdac29124",
+    "name": "Raízes do Nordeste API",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52474300",
+    "_collection_link": "https://go.postman.co/collection/52474300-d139f91d-0549-402d-958f-b92cdac29124?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "CT-01 Catálogo – loja existente (200)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/lojas/1/catalogo",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "lojas",
+            "1",
+            "catalogo"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CT-02 Catálogo – loja inexistente (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/lojas/99/catalogo",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "lojas",
+            "99",
+            "catalogo"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CT-03 Pedido – válido (201)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id_cliente\": 1,\r\n  \"id_loja\": 1,\r\n  \"canal\": \"APP\",\r\n  \"data_hora_agendamento\": null,\r\n  \"consumir_no_local\": false,\r\n  \"itens\": [\r\n    { \"id_produto\": 1, \"quantidade\": 2 }\r\n  ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/pedidos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "pedidos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CT-04 Pedido – sem itens (400)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id_cliente\": 1,\r\n  \"id_loja\": 1,\r\n  \"canal\": \"APP\",\r\n  \"data_hora_agendamento\": null,\r\n  \"consumir_no_local\": false,\r\n  \"itens\": []\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/pedidos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "pedidos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CT-05 Pedido – quantidade zero (400)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id_cliente\": 1,\r\n  \"id_loja\": 1,\r\n  \"canal\": \"APP\",\r\n  \"data_hora_agendamento\": null,\r\n  \"consumir_no_local\": false,\r\n  \"itens\": [\r\n    { \"id_produto\": 1, \"quantidade\": 0 }\r\n  ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/pedidos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "pedidos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CT-06 Pedido – produto indisponível (409)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id_cliente\": 1,\r\n  \"id_loja\": 1,\r\n  \"canal\": \"APP\",\r\n  \"data_hora_agendamento\": null,\r\n  \"consumir_no_local\": false,\r\n  \"itens\": [\r\n  { \"id_produto\": 3, \"quantidade\": 1 },\r\n]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/pedidos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "pedidos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CT-06B Pedido – rollback item misto (409) Copy",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id_cliente\": 1,\r\n  \"id_loja\": 1,\r\n  \"canal\": \"APP\",\r\n  \"data_hora_agendamento\": null,\r\n  \"consumir_no_local\": false,\r\n \"itens\": [\r\n  { \"id_produto\": 1, \"quantidade\": 2 },\r\n  { \"id_produto\": 3, \"quantidade\": 1 }\r\n]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/pedidos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "pedidos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CT-07 Pedido – cliente inexistente (404)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id_cliente\": 99,\r\n  \"id_loja\": 1,\r\n  \"canal\": \"APP\",\r\n  \"data_hora_agendamento\": null,\r\n  \"consumir_no_local\": false,\r\n  \"itens\": [ { \"id_produto\": 1, \"quantidade\": 1 } ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/pedidos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "pedidos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CT-08 Pedido – agendamento fora do APP (400)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"id_cliente\": 1,\r\n  \"id_loja\": 1,\r\n  \"canal\": \"TOTEM\",\r\n  \"data_hora_agendamento\": \"2026-12-01T12:00:00\",\r\n  \"consumir_no_local\": false,\r\n  \"itens\": [ { \"id_produto\": 1, \"quantidade\": 1 } ]\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/pedidos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "pedidos"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
