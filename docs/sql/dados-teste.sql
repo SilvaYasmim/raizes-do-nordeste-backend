@@ -84,3 +84,7 @@ INSERT INTO cliente (login, hash, nome, data_nascimento, email, contato, cpf, co
 VALUES 
 ('cliente_teste', '$2a$10$ExemploHashSenhaSegura123', 'Maria Teste', '1995-05-20', 'maria.teste@email.com', '+351911111111', '00011122233', false, 100),
 (NULL, NULL, 'Visitante Balcão', NULL, NULL, NULL, NULL, true, 0);
+
+SELECT * FROM estoque WHERE id_loja = 1 AND id_produto = 1
+
+SELECT * FROM pedido
