@@ -29,7 +29,7 @@ docs/
   postman/       # colecoes de requisicoes para teste
   sql/           # scripts SQL e dados iniciais de teste
   confluence/    # documentacao de suporte do projeto
-  jira/          # prints dos scruns e processos de gestao do projeto
+  jira/          # prints das sprints e processos de gestao do projeto
   openapi.jason
 src/
   main/
