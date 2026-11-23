@@ -19,7 +19,7 @@ Sistema de back-end para a rede de lanchonetes nordestinas "Raízes do Nordeste"
 | ORM | Spring Data JPA|
 | Documentação e especificação de API| springdoc openapi (Swagger)|
 
-As escolhas tecnicas do back end seguem o registro ADR 001 na documentacao do projeto. O Java com Spring Boot foi escolhido porque ja faz parte do dominio da equipe, o que reduz o risco no prazo curto, oferece um ecossistema amplo e atende bem a necessidades como robustez, escalabilidade, tolerancia a falhas e auditoria, mesmo sendo mais verboso. O PostgreSQL foi adotado pela liberdade de escolha do banco e pelo suporte nativo a JSONB, que ajuda a guardar formatos variados de dados vindos de integracoes externas sem exigir estrutura rigida demais. Ja o Maven entrou por ter curva de aprendizado menor que o Gradle, facilitar a manutencao e ser padrao em projetos Java corporativos.
+As escolhas tecnicas do back end seguem o registro ADR 001 na documentacao do projeto. O Java com Spring Boot foi escolhido porque ja faz parte do dominio da equipe, o que reduz o risco no prazo curto, oferece um ecossistema amplo e atende bem a necessidades como robustez, escalabilidade, tolerancia a falhas e auditoria, mesmo sendo mais verboso. O PostgreSQL foi adotado por ser um banco relacional confiável, que ajuda a guardar formatos variados de dados vindos de integracoes externas sem exigir estrutura rigida demais. Ja o Maven entrou por ter curva de aprendizado menor que o Gradle, facilitar a manutencao e ser padrao em projetos Java corporativos.
 
 ## Estrutura do projeto
 
@@ -28,6 +28,9 @@ docs/
   evidencias/    # prints dos testes e do Swagger UI
   postman/       # colecoes de requisicoes para teste
   sql/           # scripts SQL e dados iniciais de teste
+  confluence/    # documentacao de suporte do projeto
+  jira/          # prints dos scruns e processos de gestao do projeto
+  openapi.jason
 src/
   main/
     java/br/com/raizes/raizes_api/
@@ -63,7 +66,7 @@ Depois que a aplicacao subir e criar as tabelas, carregue o script docs/sql/dado
 - Requisitos, modelagem (casos de uso, classes, DER) e ADRs: Confluence (espaco Raizes do Nordeste)
 - Decisoes de arquitetura (ADR 001): Confluence (pagina Decisao de Arquitetura no espaco Raizes do Nordeste)
 - Backlog e sprints: Jira (projeto SCRUM)
-- Artefatos tecnicos e testes: pasta /docs (sql, postman e evidencias)
+- Artefatos tecnicos e testes: pasta /docs (sql, postman, evidencias, confluence, jira e arquivo openapi.json)
 
 ## Endpoints implementados
 
